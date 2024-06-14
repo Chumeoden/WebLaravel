@@ -7,7 +7,7 @@
             <h3 class="fw-bold mb-3">Hotels</h3>
             <ul class="breadcrumbs mb-3">
                 <li class="nav-home">
-                    <a href="#">
+                <a href="{{ route('admin.dashboard') }}">
                         <i class="icon-home"></i>
                     </a>
                 </li>
@@ -15,10 +15,10 @@
                     <i class="icon-arrow-right"></i>
                 </li>
                 <li class="nav-item">
-                    <a href="#">Hotels</a>
+                    <a href="{{ route('hotels.create') }}">Hotels</a>
                 </li>
                 <li class="icon-arrow-right">
-                    <a href="#">Edit Hotels</a>
+                    <a href="#">Create Hotels</a>
                 </li>
             </ul>
         </div>
@@ -63,7 +63,7 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
+                            <th scope="col">ID</th>
                             <th scope="col">Hotel Name</th>
                             <th scope="col">Address</th>
                             <th scope="col">Actions</th>
