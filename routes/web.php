@@ -42,4 +42,7 @@ Route::get('/management/account_and_role', function () {
 //
 Route::resource('account_and_role', AccountAndRoleController::class);
 Route::get('management/account_and_role', [AccountAndRoleController::class, 'index'])->name('account_and_role.index');
+Route::delete('management/account_and_role/{user}', [AccountAndRoleController::class, 'destroy'])->name('account_and_role.destroy');
+Route::get('management/account_and_role/{user}/edit', [AccountAndRoleController::class, 'edit'])->name('account_and_role.edit');
+Route::put('management/account_and_role/{user}', [AccountAndRoleController::class, 'update'])->name('account_and_role.update');
 

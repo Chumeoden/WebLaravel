@@ -46,24 +46,29 @@ class AccountAndRoleController extends Controller
 
     public function update(Request $request, User $user)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'username' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,'.$user->id,
-            'password' => 'nullable|string|min:8',
+            'email' => 'required|email|max:255|unique:users,email,' . $user->id,
             'role' => 'required|string',
+            'password' => 'nullable|string|min:6',
         ]);
-
-        $user->update([
-            'name' => $request->name,
-            'username' => $request->username,
-            'email' => $request->email,
-            'password' => $request->password ? bcrypt($request->password) : $user->password,
-            'role' => $request->role,
-        ]);
-
+    
+        $user->name = $validatedData['name'];
+        $user->username = $validatedData['username'];
+        $user->email = $validatedData['email'];
+        $user->role = $validatedData['role'];
+    
+        if ($request->filled('password')) {
+            $user->password = bcrypt($validatedData['password']);
+        }
+    
+        $user->save();
+    
         return redirect()->route('account_and_role.index')->with('success', 'Account updated successfully.');
     }
+    
+    
 
     public function destroy(User $user)
     {
