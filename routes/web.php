@@ -5,6 +5,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AccountAndRoleController;
+use App\Http\Controllers\HotelController;
+
+
 
 // Auth routes
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
@@ -46,3 +49,21 @@ Route::delete('management/account_and_role/{user}', [AccountAndRoleController::c
 Route::get('management/account_and_role/{user}/edit', [AccountAndRoleController::class, 'edit'])->name('account_and_role.edit');
 Route::put('management/account_and_role/{user}', [AccountAndRoleController::class, 'update'])->name('account_and_role.update');
 
+// Route để hiển thị danh sách khách sạn
+Route::get('/hotels', [HotelController::class, 'index'])->name('hotels.index');
+
+// Route để hiển thị form tạo mới khách sạn
+Route::get('/hotels/create', [HotelController::class, 'create'])->name('hotel.create');
+
+// Route để lưu thông tin khách sạn mới tạo
+Route::post('/hotels', [HotelController::class, 'store'])->name('hotel.store');
+
+// Hotel routes
+Route::prefix('hotels')->group(function () {
+    Route::get('/', [HotelController::class, 'index'])->name('hotels.index');
+    Route::get('/create', [HotelController::class, 'create'])->name('hotels.create');
+    Route::post('/store', [HotelController::class, 'store'])->name('hotels.store');
+    Route::get('/{id}', [HotelController::class, 'show'])->name('hotels.show');
+    Route::get('/{id}/edit', [HotelController::class, 'edit'])->name('hotels.edit');
+    Route::put('/{id}', [HotelController::class, 'update'])->name('hotels.update');
+});

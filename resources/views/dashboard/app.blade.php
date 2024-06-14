@@ -1,9 +1,8 @@
-<!-- resources/views/dashboard/app.blade.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Kaiadmin - Bootstrap 5 Admin Dashboard</title>
+    <title>Booking Hotel</title>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
     <link rel="icon" href="{{ asset('assets/img/kaiadmin/favicon.ico') }}" type="image/x-icon" />
 
@@ -77,7 +76,7 @@
                             <div class="collapse" id="base">
                                 <ul class="nav nav-collapse">
                                     <li class="nav-item">
-                                        <a href="{{ asset('management/account_and_role') }}">
+                                        <a href="{{ route('account_and_role.index') }}">
                                             <i class="fas fa-users-cog"></i>
                                             <p>Account And Role</p>
                                         </a>
@@ -85,6 +84,31 @@
                                 </ul>
                             </div>
                         </li>
+                        <!-- Separate Hotel Section -->
+                        <li class="nav-item">
+                            <a data-bs-toggle="collapse" href="#hotels">
+                                <i class="fas fa-building"></i>
+                                <p>Hotels</p>
+                                <span class="caret"></span>
+                            </a>
+                            <div class="collapse" id="hotels">
+                                <ul class="nav nav-collapse">
+                                    <li class="nav-item">
+                                        <a href="{{ route('hotels.create') }}">
+                                            <i class="fas fa-bed"></i>
+                                            <p>Manage Hotels</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('hotels.index') }}">
+                                            <i class="fas fa-list"></i>
+                                            <p>Hotel List</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <!-- End Hotel Section -->
                     </ul>
                 </div>
             </div>

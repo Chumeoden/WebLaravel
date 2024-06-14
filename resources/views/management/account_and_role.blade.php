@@ -98,6 +98,7 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
+                        <th>Name</th>
                         <th>Username</th>
                         <th>Email</th>
                         <th>Role</th>
@@ -108,6 +109,7 @@
                     @foreach($accounts as $account)
                     <tr>
                         <td>{{ $account->name }}</td>
+                        <td>{{ $account->username }}</td>
                         <td>{{ $account->email }}</td>
                         <td>{{ $account->role }}</td>
                         <td>
