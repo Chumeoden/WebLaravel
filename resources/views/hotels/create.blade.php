@@ -1,6 +1,28 @@
 @extends('dashboard.app')
 
 @section('content')
+<div class="container content-container">
+    <div class="page-inner">
+        <div class="page-header">
+            <h3 class="fw-bold mb-3">Hotels</h3>
+            <ul class="breadcrumbs mb-3">
+                <li class="nav-home">
+                    <a href="#">
+                        <i class="icon-home"></i>
+                    </a>
+                </li>
+                <li class="separator">
+                    <i class="icon-arrow-right"></i>
+                </li>
+                <li class="nav-item">
+                    <a href="#">Hotels</a>
+                </li>
+                <li class="icon-arrow-right">
+                    <a href="#">Edit Hotels</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 <div class="container">
     <div class="card">
         <div class="card-header">
@@ -74,3 +96,26 @@
 
 </div>
 @endsection
+<style>
+    .content-container {
+        margin-top: 80px;
+    }
+    .page-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .page-header h3 {
+        text-align: center;
+    }
+    .breadcrumbs {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        list-style: none;
+        padding: 0;
+    }
+    .breadcrumbs .nav-home {
+        margin-right: auto;
+    }
+</style>
