@@ -64,4 +64,12 @@ class HotelController extends Controller
 
         return redirect()->route('hotels.create')->with('success', 'Hotel created successfully!');
     }
+
+    public function destroy($id)
+    {
+        $hotel = Hotel::findOrFail($id);
+        $hotel->delete();
+
+        return redirect()->route('hotels.create')->with('success', 'Hotel deleted successfully!');
+    }
 }

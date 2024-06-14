@@ -66,4 +66,5 @@ Route::prefix('hotels')->group(function () {
     Route::get('/{id}', [HotelController::class, 'show'])->name('hotels.show');
     Route::get('/{id}/edit', [HotelController::class, 'edit'])->name('hotels.edit');
     Route::put('/{id}', [HotelController::class, 'update'])->name('hotels.update');
+    Route::delete('/{id}', [HotelController::class, 'destroy'])->name('hotels.destroy');
 });

@@ -2,10 +2,11 @@
 @extends('dashboard.app')
 
 @section('content')
+
 <div class="container content-container">
     <div class="page-inner">
         <div class="page-header">
-            <h3 class="fw-bold mb-3">Edit Hotel</h3>
+            <h3 class="fw-bold mb-3">Hotels</h3>
             <ul class="breadcrumbs mb-3">
                 <li class="nav-home">
                     <a href="#">
@@ -18,11 +19,8 @@
                 <li class="nav-item">
                     <a href="#">Hotels</a>
                 </li>
-                <li class="separator">
-                    <i class="icon-arrow-right"></i>
-                </li>
-                <li class="nav-item">
-                    <a href="#">Hotels List</a>
+                <li class="icon-arrow-right">
+                    <a href="#">Edit Hotels</a>
                 </li>
             </ul>
         </div>

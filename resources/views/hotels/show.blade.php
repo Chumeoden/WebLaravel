@@ -18,8 +18,8 @@
                 <li class="nav-item">
                     <a href="#">Hotels</a>
                 </li>
-                <li class="separator">
-                    <a class="icon-arrow-right">Show Hotels</a>
+                <li class="icon-arrow-right">
+                    <a href="#">Show Hotels</a>
                 </li>
             </ul>
         </div>

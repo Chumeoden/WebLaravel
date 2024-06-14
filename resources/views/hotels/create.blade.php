@@ -1,28 +1,6 @@
 @extends('dashboard.app')
 
 @section('content')
-<div class="container content-container">
-    <div class="page-inner">
-        <div class="page-header">
-            <h3 class="fw-bold mb-3">Hotel</h3>
-            <ul class="breadcrumbs mb-3">
-                <li class="nav-home">
-                    <a href="#">
-                        <i class="icon-home"></i>
-                    </a>
-                </li>
-                <li class="separator">
-                    <i class="icon-arrow-right"></i>
-                </li>
-                <li class="nav-item">
-                    <a href="#">Manager Hotels</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#"></a>
-                </li>
-            </ul>
-        </div>
-    </div>
 <div class="container">
     <div class="card">
         <div class="card-header">
@@ -51,6 +29,7 @@
         </div>
     </div>
 
+    <!-- Hotel List -->
     <div class="card mt-4">
         <div class="card-header">
             Hotels List
@@ -77,7 +56,12 @@
                                 <td>
                                     <a href="{{ route('hotels.show', $hotel->id) }}" class="btn btn-info btn-sm">View</a>
                                     <a href="{{ route('hotels.edit', $hotel->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                    <!-- You can add delete functionality here -->
+                                    <!-- Nút xóa -->
+                                    <form action="{{ route('hotels.destroy', $hotel->id) }}" method="POST" style="display:inline-block;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this hotel?')">Delete</button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
@@ -86,28 +70,7 @@
             @endif
         </div>
     </div>
+    <!-- End Hotel List -->
+
 </div>
 @endsection
-<style>
-    .content-container {
-        margin-top: 80px;
-    }
-    .page-header {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .page-header h3 {
-        text-align: center;
-    }
-    .breadcrumbs {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        list-style: none;
-        padding: 0;
-    }
-    .breadcrumbs .nav-home {
-        margin-right: auto;
-    }
-</style>

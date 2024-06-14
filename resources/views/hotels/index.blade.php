@@ -4,7 +4,7 @@
 <div class="container content-container">
     <div class="page-inner">
         <div class="page-header">
-            <h3 class="fw-bold mb-3">Account and Role</h3>
+            <h3 class="fw-bold mb-3">Hotels</h3>
             <ul class="breadcrumbs mb-3">
                 <li class="nav-home">
                     <a href="#">
@@ -15,13 +15,10 @@
                     <i class="icon-arrow-right"></i>
                 </li>
                 <li class="nav-item">
-                    <a href="#">Management</a>
+                    <a href="#">Hotels</a>
                 </li>
-                <li class="separator">
-                    <i class="icon-arrow-right"></i>
-                </li>
-                <li class="nav-item">
-                    <a href="#">Account and Role</a>
+                <li class="icon-arrow-right">
+                    <a href="#">Show Hotels</a>
                 </li>
             </ul>
         </div>
@@ -44,7 +41,7 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
+                            <th scope="col">ID</th>
                             <th scope="col">Hotel Name</th>
                             <th scope="col">Address</th>
                             <th scope="col">Actions</th>
@@ -59,7 +56,12 @@
                                 <td>
                                     <a href="{{ route('hotels.show', $hotel->id) }}" class="btn btn-info btn-sm">View</a>
                                     <a href="{{ route('hotels.edit', $hotel->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                    <!-- You can add delete functionality here -->
+                                    <!-- Nút xóa -->
+                                    <form action="{{ route('hotels.destroy', $hotel->id) }}" method="POST" style="display:inline-block;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this hotel?')">Delete</button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
