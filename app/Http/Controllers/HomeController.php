@@ -11,8 +11,8 @@ class HomeController extends Controller
     {
         // Kiểm tra xem người dùng đã đăng nhập chưa
         if (Auth::check()) {
-            // Nếu đã đăng nhập, chuyển hướng đến trang dashboard hoặc nơi khác
-            return redirect()->route('dashboard');
+            // Nếu đã đăng nhập, chuyển hướng đến trang home
+            return view('home');
         } else {
             // Nếu chưa đăng nhập, hiển thị trang home với nút Login và Register
             return view('home');
