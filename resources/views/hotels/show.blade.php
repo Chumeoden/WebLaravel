@@ -5,7 +5,7 @@
 <div class="container content-container">
     <div class="page-inner">
         <div class="page-header">
-            <h3 class="fw-bold mb-3">Hotels</h3>
+            <h3 class="fw-bold mb-3">Hotel Details</h3>
             <ul class="breadcrumbs mb-3">
                 <li class="nav-home">
                     <a href="{{ route('admin.dashboard') }}">
@@ -16,43 +16,60 @@
                     <i class="icon-arrow-right"></i>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('hotels.create') }}">Hotels</a>
+                    <a href="{{ route('hotels.index') }}">Hotels</a>
                 </li>
                 <li class="icon-arrow-right">
-                    <a href="#">Show Hotels</a>
+                    <span>Show Hotel</span>
                 </li>
             </ul>
         </div>
     </div>
-<div class="container">
-    <div class="card">
-        <div class="card-header">
-            Hotel Details
-        </div>
-        <div class="card-body">
-            @if (session('success'))
-                <div class="alert alert-success" role="alert">
-                    {{ session('success') }}
-                </div>
-            @endif
 
-            <div class="form-group">
-                <label for="name">Hotel Name</label>
-                <input type="text" class="form-control" id="name" name="name" value="{{ $hotel->name }}" disabled>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                Hotel Information
             </div>
-            <div class="form-group">
-                <label for="address">Address</label>
-                <input type="text" class="form-control" id="address" name="address" value="{{ $hotel->address }}" disabled>
-            </div>
-            <!-- Add more fields as needed -->
+            <div class="card-body">
+                @if (session('success'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('success') }}
+                    </div>
+                @endif
 
-            <a href="{{ route('hotels.edit', $hotel->id) }}" class="btn btn-warning">Edit Hotel</a>
+                <div class="form-group">
+    <label for="image">Hotel Image</label>
+    <div>
+        @if ($hotel->image)
+            <img src="{{ asset('storage/' . $hotel->image) }}" alt="Hotel Image" class="img-thumbnail">
+        @else
+            <p>No image available</p>
+        @endif
+    </div>
+</div>
+<div class="form-group">
+    <label for="room_count">Number of Rooms</label>
+    <input type="text" class="form-control" id="room_count" name="room_count" value="{{ $hotel->room_count }}" disabled>
+</div>
+<div class="form-group">
+    <label for="room_types">Room Types</label>
+    <ul>
+        @php
+            $roomTypes = json_decode($hotel->room_types);
+        @endphp
+        @foreach ($roomTypes as $type)
+            <li>{{ $type }}</li>
+        @endforeach
+    </ul>
+</div>
+
+                <a href="{{ route('hotels.edit', $hotel->id) }}" class="btn btn-warning">Edit Hotel</a>
+            </div>
         </div>
     </div>
-
-    <!-- Add section for managing rooms, etc. -->
 </div>
 @endsection
+
 <style>
     .content-container {
         margin-top: 80px;

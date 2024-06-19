@@ -107,6 +107,7 @@
                                     </li>
                                 </ul>
                             </div>
+                            
                         </li>
                         <!-- End Hotel Section -->
                     </ul>

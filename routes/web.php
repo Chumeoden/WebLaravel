@@ -68,3 +68,5 @@ Route::prefix('hotels')->group(function () {
     Route::put('/{id}', [HotelController::class, 'update'])->name('hotels.update');
     Route::delete('/{id}', [HotelController::class, 'destroy'])->name('hotels.destroy');
 });
+
+Route::resource('hotels', HotelController::class);

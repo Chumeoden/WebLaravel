@@ -9,7 +9,7 @@ class HotelController extends Controller
 {
     public function create()
     {
-        $hotels = Hotel::all(); // Lấy danh sách tất cả các khách sạn
+        $hotels = Hotel::all();
         return view('hotels.create', compact('hotels'));
     }
 
@@ -33,16 +33,25 @@ class HotelController extends Controller
 
     public function update(Request $request, $id)
     {
-        // Validate form data
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'address' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'room_count' => 'required|integer|min:1',
+            'room_types' => 'required|string', // Tạm thời chỉ yêu cầu string
         ]);
 
-        // Update hotel record in database
         $hotel = Hotel::findOrFail($id);
         $hotel->name = $validatedData['name'];
         $hotel->address = $validatedData['address'];
+        $hotel->room_count = $validatedData['room_count'];
+        $hotel->room_types = json_encode(explode(', ', $validatedData['room_types']));
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images', 'public');
+            $hotel->image = $imagePath;
+        }
+
         $hotel->save();
 
         return redirect()->route('hotels.show', $hotel->id)->with('success', 'Hotel updated successfully!');
@@ -50,16 +59,25 @@ class HotelController extends Controller
 
     public function store(Request $request)
     {
-        // Validate form data
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'address' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'room_count' => 'required|integer|min:1',
+            'room_types' => 'required|string', // Tạm thời chỉ yêu cầu string
         ]);
 
-        // Create hotel record in database
         $hotel = new Hotel();
         $hotel->name = $validatedData['name'];
         $hotel->address = $validatedData['address'];
+        $hotel->room_count = $validatedData['room_count'];
+        $hotel->room_types = json_encode(explode(', ', $validatedData['room_types']));
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images', 'public');
+            $hotel->image = $imagePath;
+        }
+
         $hotel->save();
 
         return redirect()->route('hotels.create')->with('success', 'Hotel created successfully!');
@@ -70,6 +88,6 @@ class HotelController extends Controller
         $hotel = Hotel::findOrFail($id);
         $hotel->delete();
 
-        return redirect()->route('hotels.create')->with('success', 'Hotel deleted successfully!');
+        return redirect()->route('hotels.index')->with('success', 'Hotel deleted successfully!');
     }
 }
